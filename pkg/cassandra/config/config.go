@@ -136,7 +136,7 @@ func (c *Configuration) NewCluster() *gocql.ClusterConfig {
 	if c.LocalDC != "" {
 		fallbackHostSelectionPolicy = gocql.DCAwareRoundRobinPolicy(c.LocalDC)
 	}
-	cluster.PoolConfig.HostSelectionPolicy = gocql.TokenAwareHostPolicy(fallbackHostSelectionPolicy, gocql.ShuffleReplicas())
+	cluster.PoolConfig.HostSelectionPolicy = gocql.TokenAwareHostPolicy(fallbackHostSelectionPolicy)
 
 	if c.Authenticator.Basic.Username != "" && c.Authenticator.Basic.Password != "" {
 		cluster.Authenticator = gocql.PasswordAuthenticator{
